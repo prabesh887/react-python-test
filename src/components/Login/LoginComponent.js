@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import DeviceEmulator from '../Device/DeviceComponent';
 
 function LoginComponent() {
   const [username, setUsername] = useState('');
@@ -128,14 +129,17 @@ function LoginComponent() {
       {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
 
       {/* This button appears once the challenge is required */}
-      {challengeUrl && (
-        <div>
-          <p>Please complete the challenge in the popup window.</p>
-          <button onClick={handleChallengeResolved}>
-            I have completed the challenge
-          </button>
-        </div>
-      )}
+      {
+        <>
+          <div>
+            <p>Please complete the challenge in the popup window.</p>
+            <button onClick={handleChallengeResolved}>
+              I have completed the challenge
+            </button>
+          </div>
+          <DeviceEmulator apiEndpoint="https://www.instagram.com/explore/?hl=en" />
+        </>
+      }
     </div>
   );
 }
